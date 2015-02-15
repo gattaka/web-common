@@ -1,4 +1,4 @@
-package cz.gattserver.web.common.ui;
+package cz.gattserver.web.common;
 
 /**
  * Udává v jakém stavu se nachází stránka, kterou jsem právě vystavěl - je v

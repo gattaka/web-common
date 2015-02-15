@@ -6,7 +6,7 @@ import com.vaadin.ui.Component;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
 
-import cz.gattserver.web.common.ui.SpringContextHelper;
+import cz.gattserver.web.common.SpringContextHelper;
 
 public class WebWindow extends Window {
 

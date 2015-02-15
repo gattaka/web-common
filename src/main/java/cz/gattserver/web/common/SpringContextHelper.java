@@ -1,4 +1,4 @@
-package cz.gattserver.web.common.ui;
+package cz.gattserver.web.common;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;

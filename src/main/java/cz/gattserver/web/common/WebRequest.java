@@ -1,10 +1,10 @@
-package cz.gattserver.web.common.ui;
+package cz.gattserver.web.common;
+
+import java.io.Serializable;
 
 import com.vaadin.server.Page;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.ui.JavaScript;
-
-import cz.gattserver.web.common.URLPathAnalyzer;
 
 /**
  * Třída poskytující veškeré informace o requestu od Vaadinu, upravené tak, aby šli snadno používat v objektech stránek
@@ -12,7 +12,9 @@ import cz.gattserver.web.common.URLPathAnalyzer;
  * @author gatt
  * 
  */
-public class WebRequest {
+public class WebRequest implements Serializable {
+
+	private static final long serialVersionUID = -5174886410110466625L;
 
 	private VaadinRequest vaadinRequest;
 	private URLPathAnalyzer analyzer;
@@ -38,7 +40,7 @@ public class WebRequest {
 	 */
 	public void updateURL(String path) {
 		String url = getPageURL(path);
-		JavaScript.eval("window.history.pushState(\"object or string\", \"Title\", \"" + url + "\");");
+		JavaScript.eval("window.history.pushState(\"" + url + "\", \"Title\", \"" + url + "\");");
 		currentPage = url;
 	}
 
@@ -57,7 +59,7 @@ public class WebRequest {
 	 * Získá URL stránky. Kořen webu + suffix
 	 */
 	public String getPageURL(String suffix) {
-		return vaadinRequest.getContextPath() + "/" + suffix;
+		return contextRoot + "/" + suffix;
 	}
 
 	/**

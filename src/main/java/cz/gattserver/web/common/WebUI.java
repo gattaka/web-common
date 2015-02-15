@@ -1,4 +1,4 @@
-package cz.gattserver.web.common.ui;
+package cz.gattserver.web.common;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,7 +8,6 @@ import com.vaadin.server.VaadinSession;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.UI;
 
-import cz.gattserver.web.common.URLPathAnalyzer;
 import cz.gattserver.web.common.exception.ApplicationErrorHandler;
 
 public abstract class WebUI extends UI {
