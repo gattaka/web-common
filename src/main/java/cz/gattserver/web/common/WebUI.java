@@ -29,13 +29,8 @@ public abstract class WebUI extends UI {
 		logger.info("Path: [" + path + "]");
 
 		WebRequest webRequest = new WebRequest(request);
-		URLPathAnalyzer analyzer = webRequest.getAnalyzer();
 
-		// pokud nebyla cesta prázná, pak proveď posuv
-		if (analyzer.getPathToken(0) != null)
-			analyzer.shift();
-
-		Layout content = createPageByPath(analyzer.getPathToken(0), webRequest);
+		Layout content = createPageByPath(webRequest);
 
 		PageState state = webRequest.getPageState();
 		if (PageState.CLEAN.equals(state)) {
@@ -48,5 +43,5 @@ public abstract class WebUI extends UI {
 
 	protected abstract void showError(PageState state);
 
-	protected abstract Layout createPageByPath(String path, WebRequest webRequest);
+	protected abstract Layout createPageByPath(WebRequest webRequest);
 }

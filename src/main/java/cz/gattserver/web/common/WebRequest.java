@@ -38,17 +38,27 @@ public class WebRequest implements Serializable {
 	 * 
 	 * @param path
 	 */
-	public void updateURL(String path) {
-		String url = getPageURL(path);
+	public void updateURL(String... path) {
+		String url = getPageURL(arrayToPath(path));
 		JavaScript.eval("window.history.pushState(\"" + url + "\", \"Title\", \"" + url + "\");");
 		currentPage = url;
+	}
+
+	private String arrayToPath(String... path) {
+		StringBuilder builder = new StringBuilder();
+		for (String s : path) {
+			builder.append(s);
+			builder.append("/");
+		}
+		builder.deleteCharAt(builder.length() - 1);
+		return builder.toString();
 	}
 
 	/**
 	 * Přejde na stránku
 	 */
-	public void redirect(String uri) {
-		Page.getCurrent().setLocation(uri);
+	public void redirect(String... uri) {
+		Page.getCurrent().setLocation(arrayToPath(uri));
 	}
 
 	public String getContextRoot() {
@@ -58,15 +68,15 @@ public class WebRequest implements Serializable {
 	/**
 	 * Získá URL stránky. Kořen webu + suffix
 	 */
-	public String getPageURL(String suffix) {
-		return contextRoot + "/" + suffix;
+	public String getPageURL(String... suffix) {
+		return contextRoot + "/" + arrayToPath(suffix);
 	}
 
 	/**
 	 * Přesměruje na členskou stránku
 	 */
-	public void redirectToPage(String relativeURL) {
-		redirect(getPageURL(relativeURL));
+	public void redirectToPage(String... relativeURL) {
+		redirect(getPageURL(arrayToPath(relativeURL)));
 	}
 
 	public VaadinRequest getVaadinRequest() {
