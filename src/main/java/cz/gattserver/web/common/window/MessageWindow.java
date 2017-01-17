@@ -27,7 +27,6 @@ public abstract class MessageWindow extends WebWindow {
 		super(caption);
 
 		center();
-		setWidth("420px");
 
 		HorizontalLayout horizontalLayout = new HorizontalLayout();
 		horizontalLayout.setSpacing(true);
@@ -38,15 +37,10 @@ public abstract class MessageWindow extends WebWindow {
 		horizontalLayout.addComponent(embedded);
 		horizontalLayout.setComponentAlignment(embedded, Alignment.MIDDLE_CENTER);
 
-		CssLayout messageLayout = new CssLayout();
-		horizontalLayout.addComponent(messageLayout);
-		horizontalLayout.setComponentAlignment(messageLayout, Alignment.MIDDLE_CENTER);
-		messageLayout.setWidth("100%");
-
 		Label msgLabel = new Label(labelCaption);
 		msgLabel.setSizeUndefined();
 		// msgLabel.addStyleName("msglabel");
-		messageLayout.addComponent(msgLabel);
+		horizontalLayout.addComponent(msgLabel);
 
 		createDetails();
 

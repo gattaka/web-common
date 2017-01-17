@@ -45,7 +45,7 @@ public class URLPathAnalyzer {
 	/**
 	 * Získá token z cesty dle zadané pozice, nebo vrátí null
 	 */
-	public String getPathToken(int index) {
+	private String getPathToken(int index) {
 		return tokens.size() >= index + 1 ? tokens.get(index) : null;
 	}
 
@@ -53,21 +53,16 @@ public class URLPathAnalyzer {
 	 * Získá token z aktuální pozice
 	 */
 	public String getCurrentPathToken() {
-		return getCurrentPathToken(0);
+		return getPathToken(currentIndex);
 	}
 
 	/**
-	 * Získá token z aktuální pozice + offset
-	 */
-	public String getCurrentPathToken(int offset) {
-		return getPathToken(currentIndex + offset);
-	}
-
-	/**
-	 * Získá token z aktuální pozice a posune se
+	 * Získá token z aktuální pozice, pokud není null posune se jinak jen vrátí null
 	 */
 	public String getNextPathToken() {
 		String token = getCurrentPathToken();
+		if (token == null)
+			return null;
 		shift();
 		return token;
 	}
@@ -77,16 +72,9 @@ public class URLPathAnalyzer {
 	 * přednostně parsovat - například stránka na adrese settings/app bude v rootu (UI) naparsována na úrovni 0
 	 * ("settings") a přesměrována na settings stránku - tam už je ale podstatná část s "app" a proto je v UI analyzer
 	 * posunut na index 1, který bude na "app" token odkazovat rovnou.
-	 * 
-	 * @return novou pozici indexu
 	 */
-	public int shift() {
+	public void shift() {
 		currentIndex++;
-		return currentIndex;
-	}
-
-	public int getCurrentPathIndex() {
-		return currentIndex;
 	}
 
 	public boolean startsWith(String prefix) {
