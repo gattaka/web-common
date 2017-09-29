@@ -1,10 +1,10 @@
 package cz.gattserver.web.common.ui.converter;
 
-import java.util.Locale;
+import com.vaadin.data.Converter;
+import com.vaadin.data.Result;
+import com.vaadin.data.ValueContext;
 
-import com.vaadin.data.util.converter.Converter;
-
-import cz.gattserver.web.common.util.StringPreviewCreator;
+import cz.gattserver.common.util.StringPreviewCreator;
 
 public class StringToPreviewConverter implements Converter<String, String> {
 
@@ -17,25 +17,13 @@ public class StringToPreviewConverter implements Converter<String, String> {
 	}
 
 	@Override
-	public String convertToModel(String value, Class<? extends String> targetType, Locale locale)
-			throws com.vaadin.data.util.converter.Converter.ConversionException {
-		return value;
+	public Result<String> convertToModel(String value, ValueContext context) {
+		return Result.ok(value);
 	}
 
 	@Override
-	public String convertToPresentation(String value, Class<? extends String> targetType, Locale locale)
-			throws com.vaadin.data.util.converter.Converter.ConversionException {
+	public String convertToPresentation(String value, ValueContext context) {
 		return StringPreviewCreator.createPreview(value, previewLength);
-	}
-
-	@Override
-	public Class<String> getModelType() {
-		return String.class;
-	}
-
-	@Override
-	public Class<String> getPresentationType() {
-		return String.class;
 	}
 
 }

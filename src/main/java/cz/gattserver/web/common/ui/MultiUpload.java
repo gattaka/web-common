@@ -31,6 +31,7 @@ public abstract class MultiUpload extends CssLayout {
 	public MultiUpload(boolean multiple) {
 		stateWindow = new UploadStateWindow();
 		multiFileUpload = new MultiFileUpload(new UploadFinishedHandler() {
+			private static final long serialVersionUID = -6824849085100457422L;
 
 			@Override
 			public void handleFile(InputStream in, String fileName, String mime, long size) {

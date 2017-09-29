@@ -5,7 +5,7 @@ import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
 import java.util.Locale;
 
-public class StringToFixedSizeDoubleConverter extends com.vaadin.data.util.converter.StringToDoubleConverter {
+public class StringToFixedSizeDoubleConverter extends com.vaadin.data.converter.StringToDoubleConverter {
 	private static final long serialVersionUID = -2914696445291603483L;
 
 	private NumberFormat format;
@@ -15,6 +15,7 @@ public class StringToFixedSizeDoubleConverter extends com.vaadin.data.util.conve
 	}
 
 	public StringToFixedSizeDoubleConverter(int minFractionDigits, int maxFractionDigits) {
+		super(0.0, "Nezdařilo se převést hodnotu");
 		format = new DecimalFormat("#,##0", new DecimalFormatSymbols(new Locale("cs")));
 		((DecimalFormat) format).setMaximumFractionDigits(maxFractionDigits);
 		((DecimalFormat) format).setMinimumFractionDigits(minFractionDigits);

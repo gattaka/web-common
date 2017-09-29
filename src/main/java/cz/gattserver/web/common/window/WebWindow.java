@@ -12,7 +12,7 @@ public class WebWindow extends Window {
 
 	private static final long serialVersionUID = -9184044674542039306L;
 
-	private VerticalLayout layout = new VerticalLayout();
+	protected VerticalLayout layout = new VerticalLayout();
 
 	public WebWindow(String name) {
 		super(name);
@@ -35,4 +35,5 @@ public class WebWindow extends Window {
 	protected void setComponentAlignment(Component component, Alignment alignment) {
 		layout.setComponentAlignment(component, alignment);
 	}
+
 }
