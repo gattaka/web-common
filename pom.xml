@@ -10,45 +10,29 @@
 		<version>1.0.0</version>
 	</parent>
 
+	<prerequisites>
+		<maven>3</maven>
+	</prerequisites>
+
 	<properties>
 		<vaadin.version>8.1.5</vaadin.version>
-		<vaadin.plugin.version>${vaadin.version}</vaadin.plugin.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
 	</properties>
-
-	<scm>
-		<connection>${scm.base.url}/web-common</connection>
-		<developerConnection>${scm.base.url}/web-common</developerConnection>
-		<tag>HEAD</tag>
-	</scm>
 
 	<repositories>
 		<repository>
 			<id>vaadin-addons</id>
 			<url>http://maven.vaadin.com/vaadin-addons</url>
 		</repository>
-		<repository>
-			<id>vaadin-snapshots</id>
-			<url>http://oss.sonatype.org/content/repositories/vaadin-snapshots/</url>
-			<releases>
-				<enabled>false</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
 	</repositories>
-	<pluginRepositories>
-		<pluginRepository>
-			<id>vaadin-snapshots</id>
-			<url>http://oss.sonatype.org/content/repositories/vaadin-snapshots/</url>
-			<releases>
-				<enabled>false</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</pluginRepository>
-	</pluginRepositories>
+
+	<scm>
+		<connection>${scm.base.url}/web-common</connection>
+		<developerConnection>${scm.base.url}/web-common</developerConnection>
+		<tag>HEAD</tag>
+	</scm>
 
 	<dependencies>
 
@@ -118,42 +102,15 @@
 			<scope>provided</scope>
 		</dependency>
 
-		<!-- Lazy Query Container -->
-		<dependency>
-			<groupId>org.vaadin.addons.lazyquerycontainer</groupId>
-			<artifactId>vaadin-lazyquerycontainer</artifactId>
-			<version>2.0.8</version>
-		</dependency>
-
-		<!-- Filter table -->
-		<dependency>
-			<groupId>org.vaadin.addons</groupId>
-			<artifactId>filteringtable</artifactId>
-			<version>0.9.15.v7</version>
-		</dependency>
-
-		<!-- GridUtils -->
-		<dependency>
-			<groupId>org.vaadin.addons</groupId>
-			<artifactId>vaadin-grid-util</artifactId>
-			<version>1.0.7</version>
-		</dependency>
-
 		<!-- Multi-upload -->
 		<dependency>
 			<groupId>com.wcs.wcslib</groupId>
 			<artifactId>wcslib-vaadin-widget-multifileupload</artifactId>
-			<version>1.11</version>
+			<version>3.0.1</version>
 		</dependency>
 
 		<!-- Token fields -->
 		<dependency>
-			<!-- <groupId>org.vaadin.addons</groupId> -->
-			<!-- <artifactId>extended-token-field</artifactId> -->
-			<!-- <version>0.3.0</version> -->
-			<!-- <groupId>org.vaadin.addons</groupId> -->
-			<!-- <artifactId>tokenfield</artifactId> -->
-			<!-- <version>7.0.1</version> -->
 			<groupId>com.fo0.advancedtokenfield</groupId>
 			<artifactId>AdvancedTokenField</artifactId>
 			<version>0.0.63</version>
@@ -163,9 +120,8 @@
 		<dependency>
 			<groupId>org.vaadin.addons</groupId>
 			<artifactId>animator</artifactId>
-			<version>1.7.3</version>
+			<version>3.0.0</version>
 		</dependency>
-
 	</dependencies>
 
 	<build>
