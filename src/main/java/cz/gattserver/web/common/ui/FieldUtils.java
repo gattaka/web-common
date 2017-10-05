@@ -1,5 +1,10 @@
 package cz.gattserver.web.common.ui;
 
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.Locale;
+
 import com.vaadin.data.ValidationResult;
 import com.vaadin.data.Validator;
 import com.vaadin.data.ValueContext;
@@ -9,6 +14,13 @@ import com.vaadin.ui.AbstractField;
 import com.vaadin.ui.TextField;
 
 public class FieldUtils {
+
+	public static String formatMoney(BigDecimal money) {
+		NumberFormat priceFormat = NumberFormat.getCurrencyInstance(new Locale("cs", "CZ"));
+		((DecimalFormat) priceFormat).setMaximumFractionDigits(2);
+		((DecimalFormat) priceFormat).setMinimumFractionDigits(2);
+		return priceFormat.format(money);
+	}
 
 	public static <T> void addValidator(AbstractField<T> field, Validator<T> validator) {
 		field.addValueChangeListener(event -> {
