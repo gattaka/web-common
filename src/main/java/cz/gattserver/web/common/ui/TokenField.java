@@ -59,7 +59,8 @@ public class TokenField extends AdvancedTokenField {
 
 	@Override
 	public void addToken(Token token) {
-		super.addToken(token);
+		if (token != null)
+			super.addToken(token);
 		myTokenAddListenerList.forEach(listener -> listener.action(token));
 	}
 
