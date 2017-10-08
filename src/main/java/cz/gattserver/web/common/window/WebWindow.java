@@ -24,7 +24,6 @@ public class WebWindow extends Window {
 		layout.setMargin(true);
 
 		addAction(new Window.CloseShortcut(this, KeyCode.ESCAPE));
-
 		center();
 	}
 

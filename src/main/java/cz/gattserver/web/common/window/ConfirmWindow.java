@@ -6,15 +6,21 @@ import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.Label;
 
-public abstract class ConfirmWindow extends WebWindow {
+public class ConfirmWindow extends WebWindow {
 
 	private static final long serialVersionUID = 4123506060675738841L;
+
+	public interface ConfirmAction {
+		public void onConfirm(ClickEvent event);
+	}
+
+	private ConfirmAction confirmAction;
 
 	/**
 	 * Nejobecnější dotaz na potvrzení operace
 	 */
-	public ConfirmWindow() {
-		this("Opravdu si přejete provést tuto operaci ?");
+	public ConfirmWindow(ConfirmAction confirmAction) {
+		this("Opravdu si přejete provést tuto operaci ?", confirmAction);
 	}
 
 	/**
@@ -23,8 +29,8 @@ public abstract class ConfirmWindow extends WebWindow {
 	 * @param labelCaption
 	 *            text popisku okna
 	 */
-	public ConfirmWindow(String labelCaption) {
-		this(new Label(labelCaption));
+	public ConfirmWindow(String labelCaption, ConfirmAction confirmAction) {
+		this(new Label(labelCaption), confirmAction);
 	}
 
 	/**
@@ -33,17 +39,16 @@ public abstract class ConfirmWindow extends WebWindow {
 	 * @param label
 	 *            popisek okna
 	 */
-	public ConfirmWindow(Label label) {
+	public ConfirmWindow(Label label, ConfirmAction confirmAction) {
 		super("Potvrzení operace");
+		this.confirmAction = confirmAction;
 
-		setWidth("350px");
-		setHeight("200px");
+		label.setWidth("350px");
 
 		GridLayout subWindowlayout = new GridLayout(2, 2);
 		setContent(subWindowlayout);
 		subWindowlayout.setMargin(true);
 		subWindowlayout.setSpacing(true);
-		subWindowlayout.setSizeFull();
 
 		subWindowlayout.addComponent(label, 0, 0, 1, 0);
 
@@ -52,7 +57,7 @@ public abstract class ConfirmWindow extends WebWindow {
 			private static final long serialVersionUID = 8490964871266821307L;
 
 			public void buttonClick(ClickEvent event) {
-				onConfirm(event);
+				ConfirmWindow.this.confirmAction.onConfirm(event);
 				close();
 			}
 		});
@@ -74,6 +79,12 @@ public abstract class ConfirmWindow extends WebWindow {
 
 	}
 
-	protected abstract void onConfirm(ClickEvent event);
+	public ConfirmAction getConfirmAction() {
+		return confirmAction;
+	}
+
+	public void setConfirmAction(ConfirmAction confirmAction) {
+		this.confirmAction = confirmAction;
+	}
 
 }
