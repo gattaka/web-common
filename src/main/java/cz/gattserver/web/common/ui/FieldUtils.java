@@ -16,6 +16,8 @@ import com.vaadin.ui.TextField;
 public class FieldUtils {
 
 	public static String formatMoney(BigDecimal money) {
+		if (money == null)
+			return null;
 		NumberFormat priceFormat = NumberFormat.getCurrencyInstance(new Locale("cs", "CZ"));
 		((DecimalFormat) priceFormat).setMaximumFractionDigits(2);
 		((DecimalFormat) priceFormat).setMinimumFractionDigits(2);
