@@ -14,11 +14,20 @@ public class WebWindow extends Window {
 
 	protected VerticalLayout layout = new VerticalLayout();
 
+	public WebWindow() {
+		init();
+	}
+
 	public WebWindow(String name) {
 		super(name);
+		init();
+	}
+
+	private void init() {
 		SpringContextHelper.inject(this);
 
 		setContent(layout);
+		setModal(true);
 
 		layout.setSpacing(true);
 		layout.setMargin(true);
@@ -29,6 +38,11 @@ public class WebWindow extends Window {
 
 	protected void addComponent(Component component) {
 		layout.addComponent(component);
+	}
+
+	protected void addComponent(Component component, Alignment alignment) {
+		layout.addComponent(component);
+		setComponentAlignment(component, alignment);
 	}
 
 	protected void setComponentAlignment(Component component, Alignment alignment) {
