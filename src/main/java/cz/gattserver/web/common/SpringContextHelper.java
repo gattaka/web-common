@@ -1,39 +1,22 @@
 package cz.gattserver.web.common;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
 import org.springframework.context.ApplicationContext;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
-import org.springframework.web.context.support.WebApplicationContextUtils;
+import org.springframework.context.ApplicationContextAware;
+import org.springframework.stereotype.Component;
 
-public class SpringContextHelper {
+@Component
+public class SpringContextHelper implements ApplicationContextAware {
 
-	private static class ContextHolder {
+	private static volatile ApplicationContext applicationContext;
 
-		private static volatile ApplicationContext applicationContext;
-
-		public static ApplicationContext getContext() {
-			if (applicationContext == null) {
-				synchronized (SpringContextHelper.class) {
-					if (applicationContext == null) {
-						ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder
-								.currentRequestAttributes();
-						HttpServletRequest request = requestAttributes.getRequest();
-						HttpSession session = request.getSession(false);
-						applicationContext = WebApplicationContextUtils.getRequiredWebApplicationContext(session
-								.getServletContext());
-					}
-				}
-			}
-			return applicationContext;
-		}
+	@Override
+	public void setApplicationContext(ApplicationContext applicationContext) {
+		SpringContextHelper.applicationContext = applicationContext;
 	}
 
 	public static ApplicationContext getContext() {
-		return ContextHolder.getContext();
+		return applicationContext;
 	}
 
 	public static Object getBean(final String beanRef) {
