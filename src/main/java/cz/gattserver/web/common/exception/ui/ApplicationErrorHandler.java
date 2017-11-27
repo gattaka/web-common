@@ -1,4 +1,4 @@
-package cz.gattserver.web.common.exception;
+package cz.gattserver.web.common.exception.ui;
 
 import com.vaadin.server.ErrorEvent;
 import com.vaadin.server.ErrorHandler;
@@ -24,14 +24,7 @@ public class ApplicationErrorHandler implements ErrorHandler {
 		logger.error(log);
 		UI ui = UI.getCurrent();
 		if (ui != null)
-			ui.addWindow(new ExceptionWindow() {
-				private static final long serialVersionUID = 1910421782322339390L;
-
-				@Override
-				protected String getStackTrace() {
-					return log;
-				}
-			});
+			ui.addWindow(new ExceptionWindow(throwable));
 	}
 
 }

@@ -1,4 +1,4 @@
-package cz.gattserver.web.common.exception;
+package cz.gattserver.web.common.exception.ui;
 
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;

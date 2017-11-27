@@ -1,4 +1,4 @@
-package cz.gattserver.web.common.exception;
+package cz.gattserver.web.common.exception.ui;
 
 public class SystemException extends ApplicationException {
 
