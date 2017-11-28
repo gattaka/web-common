@@ -4,7 +4,12 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 
+import org.slf4j.LoggerFactory;
+
 public class URLIdentifierUtils {
+
+	private URLIdentifierUtils() {
+	}
 
 	public static class URLIdentifier {
 		private String name;
@@ -32,7 +37,6 @@ public class URLIdentifierUtils {
 	 * <pre>
 	 * ID - Název
 	 * </pre>
-	 * 
 	 * <p>
 	 * tedy například
 	 * </p>
@@ -53,10 +57,10 @@ public class URLIdentifierUtils {
 			// Tomcat má default nastavené ignorovat adresy ve kterých je %2F
 			// https://www.assembla.com/spaces/liftweb/wiki/Tomcat/print
 			// http://forum.spring.io/forum/spring-projects/web/97212-url-encoded-in-pathvariable-value-causes-problems
-			return identifier.replaceAll("%2F","%252F");
+			return identifier.replaceAll("%2F", "%252F");
 		} catch (UnsupportedEncodingException e) {
 			// UTF-8 missing - vážně ?
-			e.printStackTrace();
+			LoggerFactory.getLogger(URLIdentifierUtils.class).error("Nezdařilo se vytvoření URL identifikátoru", e);
 			return null;
 		}
 	}
@@ -71,7 +75,6 @@ public class URLIdentifierUtils {
 	 *         {@code null} pokud nejsou splněny
 	 */
 	public static URLIdentifier parseURLIdentifier(String identifier) {
-
 		if (identifier == null)
 			return null;
 
@@ -89,11 +92,10 @@ public class URLIdentifierUtils {
 
 		try {
 			String name = URLDecoder.decode(parts[1], "UTF-8");
-			URLIdentifier urlIdentifier = new URLIdentifier(id, name);
-			return urlIdentifier;
+			return new URLIdentifier(id, name);
 		} catch (UnsupportedEncodingException e) {
 			// UTF-8 missing - vážně ?
-			e.printStackTrace();
+			LoggerFactory.getLogger(URLIdentifierUtils.class).error("Nezdařilo se naparsovat URL identifikátor", e);
 			return null;
 		}
 	}

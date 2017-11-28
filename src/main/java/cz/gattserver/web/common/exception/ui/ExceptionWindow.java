@@ -1,8 +1,6 @@
 package cz.gattserver.web.common.exception.ui;
 
-import com.vaadin.server.ThemeResource;
-
-import cz.gattserver.web.common.ui.ImageIcons;
+import cz.gattserver.web.common.ui.ImageIcon;
 import cz.gattserver.web.common.window.MessageWindow;
 
 public class ExceptionWindow extends MessageWindow {
@@ -11,7 +9,7 @@ public class ExceptionWindow extends MessageWindow {
 
 	public ExceptionWindow(Throwable throwable) {
 		super("Chyba", "Neočekávaná systémová chyba", throwable.getMessage(),
-				new ThemeResource(ImageIcons.DELETE_16_ICON));
+				ImageIcon.DELETE_16_ICON.createResource());
 		addStyleName("error-layout");
 		detailsArea.addStyleName("error-text-field");
 		detailsArea.setHeight("500px");

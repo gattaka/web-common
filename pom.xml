@@ -134,10 +134,10 @@
 
 	<build>
 		<plugins>
+			<!-- JaCoCo -->
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<!-- inherits config from parent: can override if required -->
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
 	</build>

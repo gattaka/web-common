@@ -15,6 +15,9 @@ import com.vaadin.ui.TextField;
 
 public class FieldUtils {
 
+	private FieldUtils() {
+	}
+
 	public static String formatMoney(BigDecimal money) {
 		if (money == null)
 			return null;
@@ -27,7 +30,6 @@ public class FieldUtils {
 	public static <T> void addValidator(AbstractField<T> field, Validator<T> validator) {
 		field.addValueChangeListener(event -> {
 			ValidationResult result = validator.apply(event.getValue(), new ValueContext(field));
-
 			if (result.isError()) {
 				UserError error = new UserError(result.getErrorMessage());
 				field.setComponentError(error);
@@ -49,7 +51,6 @@ public class FieldUtils {
 			}
 
 			ValidationResult result = validator.apply(val, new ValueContext(field));
-
 			if (result.isError()) {
 				UserError error = new UserError(result.getErrorMessage());
 				field.setComponentError(error);

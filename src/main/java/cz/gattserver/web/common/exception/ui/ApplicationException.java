@@ -10,17 +10,11 @@ public abstract class ApplicationException extends RuntimeException {
 
 	private static final long serialVersionUID = -1504502969392647247L;
 
-	protected String id;
-
-	protected String timeStamp;
-
-	protected String errorCode;
-
-	protected String localizedErrorMessage;
-
-	protected String originalExceptionStackTrace;
-
-	protected Boolean alreadyLogged = Boolean.FALSE;
+	protected final String id;
+	protected final String timeStamp;
+	protected final String errorCode;
+	protected final String localizedErrorMessage;
+	protected final String originalExceptionStackTrace;
 
 	public ApplicationException(String errorCode, String localizedErrorMessage) {
 		this(errorCode, localizedErrorMessage, null);
@@ -32,12 +26,7 @@ public abstract class ApplicationException extends RuntimeException {
 		this.timeStamp = DateFormatUtils.format(GregorianCalendar.getInstance(), "yyyy-MM-dd HH:mm:ss");
 		this.errorCode = errorCode;
 		this.localizedErrorMessage = localizedErrorMessage;
-		if (throwable != null)
-			this.originalExceptionStackTrace = ExceptionUtils.getStackTrace(throwable);
-	}
-
-	public void setAlreadyLogged(Boolean alreadyLogged) {
-		this.alreadyLogged = alreadyLogged;
+		this.originalExceptionStackTrace = throwable == null ? null : ExceptionUtils.getStackTrace(throwable);
 	}
 
 	public String getErrorCode() {
@@ -54,9 +43,5 @@ public abstract class ApplicationException extends RuntimeException {
 
 	public String getTimeStamp() {
 		return timeStamp;
-	}
-
-	public Boolean getAlreadyLogged() {
-		return alreadyLogged;
 	}
 }

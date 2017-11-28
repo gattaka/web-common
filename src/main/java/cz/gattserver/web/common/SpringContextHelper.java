@@ -2,16 +2,12 @@ package cz.gattserver.web.common;
 
 import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
-import org.springframework.stereotype.Component;
 
-@Component
-public class SpringContextHelper implements ApplicationContextAware {
+public class SpringContextHelper {
 
-	private static volatile ApplicationContext applicationContext;
+	private static ApplicationContext applicationContext;
 
-	@Override
-	public void setApplicationContext(ApplicationContext applicationContext) {
+	public static void setApplicationContext(ApplicationContext applicationContext) {
 		SpringContextHelper.applicationContext = applicationContext;
 	}
 

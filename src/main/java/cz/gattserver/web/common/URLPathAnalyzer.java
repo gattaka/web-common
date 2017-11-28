@@ -5,8 +5,8 @@ import java.util.List;
 
 public class URLPathAnalyzer {
 
-	private List<String> tokens = new ArrayList<String>();
-	private StringBuffer buffer = new StringBuffer();
+	private List<String> tokens = new ArrayList<>();
+	private StringBuilder buffer = new StringBuilder();
 
 	private int currentIndex;
 
@@ -16,7 +16,7 @@ public class URLPathAnalyzer {
 	private void applyDelimiter() {
 		if (buffer.length() != 0) {
 			tokens.add(buffer.toString());
-			buffer = new StringBuffer();
+			buffer = new StringBuilder();
 		}
 	}
 
@@ -57,7 +57,8 @@ public class URLPathAnalyzer {
 	}
 
 	/**
-	 * Získá token z aktuální pozice, pokud není null posune se jinak jen vrátí null
+	 * Získá token z aktuální pozice, pokud není null posune se jinak jen vrátí
+	 * null
 	 */
 	public String getNextPathToken() {
 		String token = getCurrentPathToken();
@@ -68,17 +69,19 @@ public class URLPathAnalyzer {
 	}
 
 	/**
-	 * Postupně jak se parsuje path, je aktuální jiná část, tento index označuje kterou část cesty by si měla stránky
-	 * přednostně parsovat - například stránka na adrese settings/app bude v rootu (UI) naparsována na úrovni 0
-	 * ("settings") a přesměrována na settings stránku - tam už je ale podstatná část s "app" a proto je v UI analyzer
-	 * posunut na index 1, který bude na "app" token odkazovat rovnou.
+	 * Postupně jak se parsuje path, je aktuální jiná část, tento index označuje
+	 * kterou část cesty by si měla stránky přednostně parsovat - například
+	 * stránka na adrese settings/app bude v rootu (UI) naparsována na úrovni 0
+	 * ("settings") a přesměrována na settings stránku - tam už je ale podstatná
+	 * část s "app" a proto je v UI analyzer posunut na index 1, který bude na
+	 * "app" token odkazovat rovnou.
 	 */
 	public void shift() {
 		currentIndex++;
 	}
 
 	public boolean startsWith(String prefix) {
-		return tokens.size() >= 1 && tokens.get(0).equals(prefix);
+		return !tokens.isEmpty() && tokens.get(0).equals(prefix);
 	}
 
 }

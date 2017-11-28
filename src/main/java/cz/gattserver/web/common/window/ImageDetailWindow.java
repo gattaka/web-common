@@ -2,13 +2,13 @@ package cz.gattserver.web.common.window;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
 import com.vaadin.server.FileResource;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Image;
-import com.vaadin.ui.VerticalLayout;
 
 import cz.gattserver.web.common.window.WebWindow;
 
@@ -21,28 +21,22 @@ public class ImageDetailWindow extends WebWindow {
 
 	public ImageDetailWindow(String description, File file) {
 		super(description);
-
-		// TODO kliknutím se otevře plná velikost v novém tabu
+		BufferedImage bimg = null;
 		try {
-			BufferedImage bimg = null;
 			bimg = ImageIO.read(file);
-
-			if (bimg != null) {
-				int width = bimg.getWidth();
-				int height = bimg.getHeight();
-
-				Image img = new Image(null, new FileResource(file));
-				addComponent(img);
-				((VerticalLayout) getContent()).setComponentAlignment(img,
-						Alignment.MIDDLE_CENTER);
-				setWidth((width + WINDOWPADDING) + "px");
-				setHeight((height + WINDOWPADDING + WINDOWHEADER_HEIGHT) + "px");
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (IOException e) {
+			throw new RuntimeException(e);
 		}
-		center();
+		if (bimg != null) {
+			int width = bimg.getWidth();
+			int height = bimg.getHeight();
 
+			Image img = new Image(null, new FileResource(file));
+			addComponent(img);
+			layout.setComponentAlignment(img, Alignment.MIDDLE_CENTER);
+			setWidth((width + WINDOWPADDING) + "px");
+			setHeight((height + WINDOWPADDING + WINDOWHEADER_HEIGHT) + "px");
+		}
 	}
 
 }

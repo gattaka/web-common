@@ -49,6 +49,15 @@ public class MessageWindow extends WebWindow {
 		msgLabel.setSizeUndefined();
 		horizontalLayout.addComponent(msgLabel);
 
+		createDetails(details);
+
+		Button proceedButton = new Button("OK", event -> close());
+
+		addComponent(proceedButton);
+		setComponentAlignment(proceedButton, Alignment.BOTTOM_RIGHT);
+	}
+
+	protected void createDetails(String details) {
 		if (details != null) {
 			detailsArea = new TextArea();
 			detailsArea.setValue(details);
@@ -57,11 +66,6 @@ public class MessageWindow extends WebWindow {
 			detailsArea.setHeight("200px");
 			addComponent(detailsArea);
 		}
-
-		Button proceedButton = new Button("OK", event -> close());
-
-		addComponent(proceedButton);
-		setComponentAlignment(proceedButton, Alignment.BOTTOM_RIGHT);
 	}
 
 }

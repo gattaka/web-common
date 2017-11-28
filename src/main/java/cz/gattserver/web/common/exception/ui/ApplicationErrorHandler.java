@@ -20,7 +20,7 @@ public class ApplicationErrorHandler implements ErrorHandler {
 	}
 
 	public void error(Throwable throwable) {
-		final String log = new SystemException("Chyba", "V aplikaci došlo k neočekávané chybě", throwable).toString();
+		String log = new SystemException("Chyba", "V aplikaci došlo k neočekávané chybě", throwable).toString();
 		logger.error(log);
 		UI ui = UI.getCurrent();
 		if (ui != null)
