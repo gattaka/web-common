@@ -1,4 +1,4 @@
-package cz.gattserver.web.common.window;
+package cz.gattserver.web.common.ui.window;
 
 import com.vaadin.event.ShortcutAction.KeyCode;
 import com.vaadin.ui.Alignment;
@@ -6,7 +6,7 @@ import com.vaadin.ui.Component;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
 
-import cz.gattserver.web.common.SpringContextHelper;
+import cz.gattserver.web.common.spring.SpringContextHelper;
 
 public class WebWindow extends Window {
 

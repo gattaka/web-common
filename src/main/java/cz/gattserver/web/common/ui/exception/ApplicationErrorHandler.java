@@ -1,10 +1,11 @@
-package cz.gattserver.web.common.exception.ui;
+package cz.gattserver.web.common.ui.exception;
 
 import com.vaadin.server.ErrorEvent;
 import com.vaadin.server.ErrorHandler;
 import com.vaadin.ui.UI;
 
-import cz.gattserver.web.common.exception.ui.ExceptionWindow;
+import cz.gattserver.web.common.exception.SystemException;
+import cz.gattserver.web.common.ui.exception.ExceptionWindow;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,7 +21,7 @@ public class ApplicationErrorHandler implements ErrorHandler {
 	}
 
 	public void error(Throwable throwable) {
-		String log = new SystemException("Chyba", "V aplikaci došlo k neočekávané chybě", throwable).toString();
+		String log = new SystemException("V aplikaci došlo k neočekávané chybě", throwable).toString();
 		logger.error(log);
 		UI ui = UI.getCurrent();
 		if (ui != null)

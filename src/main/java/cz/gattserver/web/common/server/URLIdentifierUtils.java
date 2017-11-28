@@ -1,4 +1,4 @@
-package cz.gattserver.web.common;
+package cz.gattserver.web.common.server;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;

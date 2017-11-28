@@ -1,4 +1,6 @@
-package cz.gattserver.web.common.window;
+package cz.gattserver.web.common.ui.window;
+
+import java.io.Serializable;
 
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
@@ -10,11 +12,11 @@ public class ConfirmWindow extends WebWindow {
 
 	private static final long serialVersionUID = 4123506060675738841L;
 
-	public interface ConfirmAction {
+	private ConfirmAction confirmAction;
+
+	public interface ConfirmAction extends Serializable {
 		public void onConfirm(ClickEvent event);
 	}
-
-	private ConfirmAction confirmAction;
 
 	/**
 	 * Nejobecnější dotaz na potvrzení operace

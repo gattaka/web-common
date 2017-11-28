@@ -1,4 +1,4 @@
-package cz.gattserver.web.common;
+package cz.gattserver.web.common.server;
 
 import java.util.ArrayList;
 import java.util.List;

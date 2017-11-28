@@ -1,4 +1,4 @@
-package cz.gattserver.web.common.window;
+package cz.gattserver.web.common.ui.window;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -10,7 +10,8 @@ import com.vaadin.server.FileResource;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Image;
 
-import cz.gattserver.web.common.window.WebWindow;
+import cz.gattserver.web.common.exception.SystemException;
+import cz.gattserver.web.common.ui.window.WebWindow;
 
 public class ImageDetailWindow extends WebWindow {
 
@@ -25,7 +26,7 @@ public class ImageDetailWindow extends WebWindow {
 		try {
 			bimg = ImageIO.read(file);
 		} catch (IOException e) {
-			throw new RuntimeException(e);
+			throw new SystemException("Při čtení souboru '" + file.getAbsolutePath() + " došlo k chybě.", e);
 		}
 		if (bimg != null) {
 			int width = bimg.getWidth();

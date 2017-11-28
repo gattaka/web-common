@@ -1,9 +1,9 @@
-package cz.gattserver.web.common.exception.ui;
+package cz.gattserver.web.common.exception;
 
 import org.apache.commons.lang3.exception.ExceptionUtils;
-import org.apache.commons.lang3.time.DateFormatUtils;
 
-import java.util.GregorianCalendar;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.UUID;
 
 public abstract class ApplicationException extends RuntimeException {
@@ -12,25 +12,19 @@ public abstract class ApplicationException extends RuntimeException {
 
 	protected final String id;
 	protected final String timeStamp;
-	protected final String errorCode;
 	protected final String localizedErrorMessage;
 	protected final String originalExceptionStackTrace;
 
-	public ApplicationException(String errorCode, String localizedErrorMessage) {
-		this(errorCode, localizedErrorMessage, null);
+	public ApplicationException(String localizedErrorMessage) {
+		this(localizedErrorMessage, null);
 	}
 
-	public ApplicationException(String errorCode, String localizedErrorMessage, Throwable throwable) {
+	public ApplicationException(String localizedErrorMessage, Throwable throwable) {
 		super(throwable);
 		this.id = UUID.randomUUID().toString();
-		this.timeStamp = DateFormatUtils.format(GregorianCalendar.getInstance(), "yyyy-MM-dd HH:mm:ss");
-		this.errorCode = errorCode;
+		this.timeStamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 		this.localizedErrorMessage = localizedErrorMessage;
 		this.originalExceptionStackTrace = throwable == null ? null : ExceptionUtils.getStackTrace(throwable);
-	}
-
-	public String getErrorCode() {
-		return errorCode;
 	}
 
 	public String getId() {

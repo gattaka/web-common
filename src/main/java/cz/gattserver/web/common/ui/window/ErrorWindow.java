@@ -1,4 +1,4 @@
-package cz.gattserver.web.common.window;
+package cz.gattserver.web.common.ui.window;
 
 import cz.gattserver.web.common.ui.ImageIcon;
 

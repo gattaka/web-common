@@ -1,4 +1,4 @@
-package cz.gattserver.web.common;
+package cz.gattserver.web.common.spring;
 
 import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
 import org.springframework.context.ApplicationContext;
@@ -6,6 +6,9 @@ import org.springframework.context.ApplicationContext;
 public class SpringContextHelper {
 
 	private static ApplicationContext applicationContext;
+
+	private SpringContextHelper() {
+	}
 
 	public static void setApplicationContext(ApplicationContext applicationContext) {
 		SpringContextHelper.applicationContext = applicationContext;

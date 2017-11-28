@@ -113,7 +113,7 @@
 		<dependency>
 			<groupId>com.fo0.advancedtokenfield</groupId>
 			<artifactId>AdvancedTokenField</artifactId>
-			<version>0.0.63</version>
+			<version>0.1.01</version>
 		</dependency>
 
 		<!-- Fading atd. - animator -->
@@ -138,6 +138,13 @@
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
+				<configuration>
+					<excludes>
+						<exclude>cz/gattserver/web/common/ui/**</exclude>
+						<exclude>cz/gattserver/web/common/spring/**</exclude>
+						<exclude>cz/gattserver/web/common/server/**</exclude>
+					</excludes>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>

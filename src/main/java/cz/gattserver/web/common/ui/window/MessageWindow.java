@@ -1,4 +1,4 @@
-package cz.gattserver.web.common.window;
+package cz.gattserver.web.common.ui.window;
 
 import com.vaadin.server.Resource;
 import com.vaadin.ui.Alignment;

@@ -4,7 +4,6 @@ import java.io.InputStream;
 
 import com.vaadin.ui.CssLayout;
 import com.wcs.wcslib.vaadin.widget.multifileupload.ui.MultiFileUpload;
-import com.wcs.wcslib.vaadin.widget.multifileupload.ui.UploadFinishedHandler;
 import com.wcs.wcslib.vaadin.widget.multifileupload.ui.UploadStateWindow;
 
 public abstract class MultiUpload extends CssLayout {
@@ -16,7 +15,7 @@ public abstract class MultiUpload extends CssLayout {
 
 	protected abstract void handleFile(InputStream in, String fileName, String mimeType, long length);
 
-	protected void onFail(String fileName, String mime, long size) {
+	protected void onStart() {
 	}
 
 	@Override
@@ -30,21 +29,13 @@ public abstract class MultiUpload extends CssLayout {
 
 	public MultiUpload(boolean multiple) {
 		stateWindow = new UploadStateWindow();
-		multiFileUpload = new MultiFileUpload(new UploadFinishedHandler() {
-			private static final long serialVersionUID = -6824849085100457422L;
-
-			@Override
-			public void handleFile(InputStream stream, String fileName, String mimeType, long length,
-					int filesLeftInQueue) {
-				MultiUpload.this.handleFile(stream, fileName, mimeType, length);
-			}
-
-		}, stateWindow, multiple);
+		multiFileUpload = new MultiFileUpload(this::onStart,
+				(InputStream stream, String fileName, String mimeType, long length,
+						int filesLeftInQueue) -> MultiUpload.this.handleFile(stream, fileName, mimeType, length),
+				stateWindow, multiple);
 		multiFileUpload.setWidth(null);
+		multiFileUpload.setUploadButtonCaptions("Vybrat soubor", "Vybrat soubory");
 		addComponent(multiFileUpload);
 	}
 
-	public MultiFileUpload getMultiFileUpload() {
-		return multiFileUpload;
-	}
 }

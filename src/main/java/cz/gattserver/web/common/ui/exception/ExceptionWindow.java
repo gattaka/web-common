@@ -1,7 +1,7 @@
-package cz.gattserver.web.common.exception.ui;
+package cz.gattserver.web.common.ui.exception;
 
 import cz.gattserver.web.common.ui.ImageIcon;
-import cz.gattserver.web.common.window.MessageWindow;
+import cz.gattserver.web.common.ui.window.MessageWindow;
 
 public class ExceptionWindow extends MessageWindow {
 
