@@ -1,4 +1,4 @@
-package test;
+package cz.gattserver.web.common.server;
 
 import static org.junit.Assert.*;
 
@@ -7,7 +7,7 @@ import org.junit.Test;
 import cz.gattserver.web.common.server.URLIdentifierUtils;
 import cz.gattserver.web.common.server.URLIdentifierUtils.URLIdentifier;
 
-public class URLIdentifierTest {
+public class URLIdentifierUtilsTest {
 
 	@Test
 	public void testCreateURLIdentifier_basic() {

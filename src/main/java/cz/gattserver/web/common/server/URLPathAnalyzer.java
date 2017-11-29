@@ -27,6 +27,7 @@ public class URLPathAnalyzer {
 	 * 
 	 */
 	public URLPathAnalyzer(String path) {
+
 		for (char c : path.toCharArray()) {
 			if (c == '/') {
 				applyDelimiter();
@@ -78,10 +79,6 @@ public class URLPathAnalyzer {
 	 */
 	public void shift() {
 		currentIndex++;
-	}
-
-	public boolean startsWith(String prefix) {
-		return !tokens.isEmpty() && tokens.get(0).equals(prefix);
 	}
 
 }
