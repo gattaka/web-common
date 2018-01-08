@@ -100,13 +100,17 @@ public enum ImageIcon {
 	/** */
 	WARNING_16_ICON("warning_16.png");
 
-	private String name;
+	private String image;
 
-	private ImageIcon(String path) {
-		this.name = path;
+	public String getImage() {
+		return image;
+	}
+
+	private ImageIcon(String name) {
+		this.image = name;
 	}
 
 	public Resource createResource() {
-		return new ClassResource(ImageIcon.class, "icons/" + name);
+		return new ClassResource(ImageIcon.class, "icons/" + image);
 	}
 }

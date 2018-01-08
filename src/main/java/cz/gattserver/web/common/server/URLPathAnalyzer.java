@@ -27,7 +27,6 @@ public class URLPathAnalyzer {
 	 * 
 	 */
 	public URLPathAnalyzer(String path) {
-
 		for (char c : path.toCharArray()) {
 			if (c == '/') {
 				applyDelimiter();

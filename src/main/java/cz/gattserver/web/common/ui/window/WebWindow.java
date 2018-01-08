@@ -36,16 +36,16 @@ public class WebWindow extends Window {
 		center();
 	}
 
-	protected void addComponent(Component component) {
+	public void addComponent(Component component) {
 		layout.addComponent(component);
 	}
 
-	protected void addComponent(Component component, Alignment alignment) {
+	public void addComponent(Component component, Alignment alignment) {
 		layout.addComponent(component);
 		setComponentAlignment(component, alignment);
 	}
 
-	protected void setComponentAlignment(Component component, Alignment alignment) {
+	public void setComponentAlignment(Component component, Alignment alignment) {
 		layout.setComponentAlignment(component, alignment);
 	}
 

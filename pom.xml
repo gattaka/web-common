@@ -131,10 +131,23 @@
 			<version>2.0.0</version>
 		</dependency>
 
+		<!-- ===== -->
+		<!-- Testy -->
+		<!-- ===== -->
+
+<dependency>
+	<groupId>cz.gattserver</groupId>
+	<artifactId>common-test</artifactId>
+	<version>1.0.0</version>
+	<type>pom</type>
+	<scope>test</scope>
+</dependency>
+
 	</dependencies>
 
 	<build>
 		<plugins>
+
 			<!-- JaCoCo -->
 			<plugin>
 				<groupId>org.jacoco</groupId>
@@ -147,6 +160,21 @@
 					</excludes>
 				</configuration>
 			</plugin>
+
+			<!-- Aby se z testů vytvořil test-jar pro sdílení mock tříd apod. -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>3.0.2</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>test-jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
 		</plugins>
 	</build>
 

@@ -10,6 +10,9 @@ public abstract class MultiUpload extends CssLayout {
 
 	private static final long serialVersionUID = 8634797364790772321L;
 
+	private static final String DEFAULT_SINGLE_BUTTON_CAPTION = "Vybrat soubor";
+	private static final String DEFAULT_MULTI_BUTTON_CAPTION = "Vybrat soubory";
+
 	protected MultiFileUpload multiFileUpload;
 	protected UploadStateWindow stateWindow;
 
@@ -24,17 +27,23 @@ public abstract class MultiUpload extends CssLayout {
 	}
 
 	public MultiUpload() {
-		this(true);
+		this(null, true);
 	}
 
-	public MultiUpload(boolean multiple) {
+	public MultiUpload(String caption) {
+		this(caption, true);
+	}
+
+	public MultiUpload(String caption, boolean multiple) {
 		stateWindow = new UploadStateWindow();
 		multiFileUpload = new MultiFileUpload(this::onStart,
 				(InputStream stream, String fileName, String mimeType, long length,
 						int filesLeftInQueue) -> MultiUpload.this.handleFile(stream, fileName, mimeType, length),
 				stateWindow, multiple);
 		multiFileUpload.setWidth(null);
-		multiFileUpload.setUploadButtonCaptions("Vybrat soubor", "Vybrat soubory");
+		multiFileUpload.setUploadButtonIcon(ImageIcon.UP_16_ICON.createResource());
+		multiFileUpload.setUploadButtonCaptions(caption == null ? DEFAULT_SINGLE_BUTTON_CAPTION : caption,
+				caption == null ? DEFAULT_MULTI_BUTTON_CAPTION : caption);
 		addComponent(multiFileUpload);
 	}
 
