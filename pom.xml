@@ -15,7 +15,7 @@
 	</prerequisites>
 
 	<properties>
-		<vaadin.version>8.1.5</vaadin.version>
+		<vaadin.version>8.3.1</vaadin.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
@@ -106,14 +106,14 @@
 		<dependency>
 			<groupId>com.wcs.wcslib</groupId>
 			<artifactId>wcslib-vaadin-widget-multifileupload</artifactId>
-			<version>3.0.1</version>
+			<version>4.0</version>
 		</dependency>
 
 		<!-- Token fields -->
 		<dependency>
 			<groupId>com.fo0.advancedtokenfield</groupId>
 			<artifactId>AdvancedTokenField</artifactId>
-			<version>0.1.01</version>
+			<version>0.1.5</version>
 		</dependency>
 
 		<!-- Fading atd. - animator -->
@@ -135,13 +135,13 @@
 		<!-- Testy -->
 		<!-- ===== -->
 
-<dependency>
-	<groupId>cz.gattserver</groupId>
-	<artifactId>common-test</artifactId>
-	<version>1.0.0</version>
-	<type>pom</type>
-	<scope>test</scope>
-</dependency>
+		<dependency>
+			<groupId>cz.gattserver</groupId>
+			<artifactId>common-test</artifactId>
+			<version>1.0.0</version>
+			<type>pom</type>
+			<scope>test</scope>
+		</dependency>
 
 	</dependencies>
 
