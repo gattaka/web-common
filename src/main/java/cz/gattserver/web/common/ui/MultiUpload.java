@@ -96,5 +96,10 @@ public abstract class MultiUpload extends CssLayout {
 				caption == null ? DEFAULT_MULTI_BUTTON_CAPTION : caption);
 		addComponent(multiFileUpload);
 	}
+	
+	@Override
+	public void setEnabled(boolean enabled) {
+		multiFileUpload.setEnabled(enabled);
+	}
 
 }
