@@ -1,6 +1,7 @@
 package cz.gattserver.web.common.ui;
 
 import java.io.InputStream;
+import java.util.List;
 
 import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.UI;
@@ -19,6 +20,25 @@ public abstract class MultiUpload extends CssLayout {
 	protected UploadStateWindow stateWindow;
 
 	private boolean queueStarted = false;
+
+	public MultiUpload() {
+		this(null, true);
+	}
+
+	public MultiUpload(String caption) {
+		this(caption, true);
+	}
+
+	public MultiUpload(String caption, boolean multiple) {
+		ui = UI.getCurrent();
+		stateWindow = new UploadStateWindow();
+		multiFileUpload = new MultiFileUpload(this::fileUploadStarted, this::fileUploadFinished, stateWindow, multiple);
+		multiFileUpload.setWidth(null);
+		multiFileUpload.setUploadButtonIcon(ImageIcon.UP_16_ICON.createResource());
+		multiFileUpload.setUploadButtonCaptions(caption == null ? DEFAULT_SINGLE_BUTTON_CAPTION : caption,
+				caption == null ? DEFAULT_MULTI_BUTTON_CAPTION : caption);
+		addComponent(multiFileUpload);
+	}
 
 	/**
 	 * Dokončení nahrávání souboru z fronty
@@ -78,28 +98,17 @@ public abstract class MultiUpload extends CssLayout {
 		multiFileUpload.setUploadButtonCaptions(caption, caption);
 	}
 
-	public MultiUpload() {
-		this(null, true);
+	public void setMaxFileSize(long size) {
+		multiFileUpload.setMaxFileSize(size);
 	}
 
-	public MultiUpload(String caption) {
-		this(caption, true);
-	}
-
-	public MultiUpload(String caption, boolean multiple) {
-		ui = UI.getCurrent();
-		stateWindow = new UploadStateWindow();
-		multiFileUpload = new MultiFileUpload(this::fileUploadStarted, this::fileUploadFinished, stateWindow, multiple);
-		multiFileUpload.setWidth(null);
-		multiFileUpload.setUploadButtonIcon(ImageIcon.UP_16_ICON.createResource());
-		multiFileUpload.setUploadButtonCaptions(caption == null ? DEFAULT_SINGLE_BUTTON_CAPTION : caption,
-				caption == null ? DEFAULT_MULTI_BUTTON_CAPTION : caption);
-		addComponent(multiFileUpload);
-	}
-	
 	@Override
 	public void setEnabled(boolean enabled) {
 		multiFileUpload.setEnabled(enabled);
+	}
+
+	public void setAcceptedMimeTypes(List<String> mimeTypes) {
+		multiFileUpload.setAcceptedMimeTypes(mimeTypes);
 	}
 
 }
