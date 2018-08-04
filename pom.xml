@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>web-common</artifactId>
 	<name>Gattserver Web Common</name>
-	<version>1.0.7</version>
+	<version>1.0.8-SNAPSHOT</version>
 
 	<parent>
 		<groupId>cz.gattserver</groupId>
@@ -31,7 +31,7 @@
 	<scm>
 		<connection>${scm.base.url}/web-common</connection>
 		<developerConnection>${scm.base.url}/web-common</developerConnection>
-		<tag>web-common-1.0.7</tag>
+		<tag>HEAD</tag>
 	</scm>
 
 	<dependencies>
