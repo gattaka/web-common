@@ -61,7 +61,7 @@ public abstract class MultiUpload extends CssLayout {
 	}
 
 	protected void queueFinished() {
-		// ui.setPollInterval(-1);
+		ui.setPollInterval(-1);
 		queueStarted = false;
 	}
 
@@ -77,13 +77,12 @@ public abstract class MultiUpload extends CssLayout {
 	 * Zahájení nahrávání fronty
 	 */
 	protected void queueStarted() {
-		// ui.setPollInterval(200);
+		ui.setPollInterval(200);
 		queueStarted = true;
 	}
 
 	@Override
 	public void attach() {
-		ui.setPollInterval(200);
 		super.attach();
 	}
 
