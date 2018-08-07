@@ -1,11 +1,17 @@
 package cz.gattserver.web.common.ui;
 
 import java.io.InputStream;
+import java.util.Collection;
 import java.util.List;
 
+import com.vaadin.server.StreamVariable.StreamingEndEvent;
+import com.vaadin.server.StreamVariable.StreamingErrorEvent;
+import com.vaadin.server.StreamVariable.StreamingStartEvent;
 import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.UI;
+import com.wcs.wcslib.vaadin.widget.multifileupload.component.FileDetail;
 import com.wcs.wcslib.vaadin.widget.multifileupload.ui.MultiFileUpload;
+import com.wcs.wcslib.vaadin.widget.multifileupload.ui.UploadStatePanel;
 import com.wcs.wcslib.vaadin.widget.multifileupload.ui.UploadStateWindow;
 
 public abstract class MultiUpload extends CssLayout {
@@ -32,11 +38,42 @@ public abstract class MultiUpload extends CssLayout {
 	public MultiUpload(String caption, boolean multiple) {
 		ui = UI.getCurrent();
 		stateWindow = new UploadStateWindow();
-		multiFileUpload = new MultiFileUpload(this::fileUploadStarted, this::fileUploadFinished, stateWindow, multiple);
+		multiFileUpload = new MultiFileUpload(this::fileUploadStarted, this::fileUploadFinished, stateWindow,
+				multiple) {
+			private static final long serialVersionUID = -6677106795206435746L;
+
+			protected UploadStatePanel createStatePanel(UploadStateWindow uploadStateWindow) {
+				return new UploadStatePanel(uploadStateWindow) {
+					private static final long serialVersionUID = -1374553853516331934L;
+
+					@Override
+					public void filesQueued(Collection<FileDetail> pendingFileNames) {
+						ui.accessSynchronously(() -> ui.setPollInterval(200));
+						super.filesQueued(pendingFileNames);
+					}
+
+					public void streamingStarted(StreamingStartEvent event) {
+						ui.accessSynchronously(() -> ui.setPollInterval(200));
+						super.streamingStarted(event);
+					};
+
+					public void streamingFinished(StreamingEndEvent event) {
+						ui.accessSynchronously(() -> ui.setPollInterval(-1));
+						super.streamingFinished(event);
+					};
+
+					public void streamingFailed(StreamingErrorEvent event) {
+						ui.accessSynchronously(() -> ui.setPollInterval(-1));
+						super.streamingFailed(event);
+					};
+				};
+			};
+		};
 		multiFileUpload.setWidth(null);
 		multiFileUpload.setUploadButtonIcon(ImageIcon.UP_16_ICON.createResource());
 		multiFileUpload.setUploadButtonCaptions(caption == null ? DEFAULT_SINGLE_BUTTON_CAPTION : caption,
 				caption == null ? DEFAULT_MULTI_BUTTON_CAPTION : caption);
+
 		addComponent(multiFileUpload);
 	}
 
@@ -61,7 +98,6 @@ public abstract class MultiUpload extends CssLayout {
 	}
 
 	protected void queueFinished() {
-		ui.setPollInterval(-1);
 		queueStarted = false;
 	}
 
@@ -77,7 +113,6 @@ public abstract class MultiUpload extends CssLayout {
 	 * Zahájení nahrávání fronty
 	 */
 	protected void queueStarted() {
-		ui.setPollInterval(200);
 		queueStarted = true;
 	}
 
@@ -88,8 +123,9 @@ public abstract class MultiUpload extends CssLayout {
 
 	@Override
 	public void detach() {
-		ui.setPollInterval(-1);
 		super.detach();
+		// pro jistotu, aby se to aspoň někdy vypnulo
+		ui.setPollInterval(-1);
 	}
 
 	@Override
