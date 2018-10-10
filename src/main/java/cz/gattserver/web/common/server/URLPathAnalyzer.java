@@ -1,9 +1,12 @@
 package cz.gattserver.web.common.server;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class URLPathAnalyzer {
+public class URLPathAnalyzer implements Serializable {
+
+	private static final long serialVersionUID = -3905355086948814995L;
 
 	private List<String> tokens = new ArrayList<>();
 	private StringBuilder buffer = new StringBuilder();
