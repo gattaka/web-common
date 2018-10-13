@@ -1,6 +1,5 @@
 package cz.gattserver.web.common.ui.window;
 
-import com.vaadin.client.ui.Action;
 import com.vaadin.event.ShortcutAction.KeyCode;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Component;
@@ -36,7 +35,7 @@ public class WebWindow extends Window {
 		addCloseShortCut();
 		center();
 	}
-	
+
 	protected void addCloseShortCut() {
 		addAction(new Window.CloseShortcut(this, KeyCode.ESCAPE));
 	}
