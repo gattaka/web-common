@@ -42,6 +42,7 @@ public abstract class MultiUpload extends CssLayout {
 				multiple) {
 			private static final long serialVersionUID = -6677106795206435746L;
 
+			@Override
 			protected UploadStatePanel createStatePanel(UploadStateWindow uploadStateWindow) {
 				return new UploadStatePanel(uploadStateWindow) {
 					private static final long serialVersionUID = -1374553853516331934L;
@@ -52,22 +53,25 @@ public abstract class MultiUpload extends CssLayout {
 						super.filesQueued(pendingFileNames);
 					}
 
+					@Override
 					public void streamingStarted(StreamingStartEvent event) {
 						ui.accessSynchronously(() -> ui.setPollInterval(200));
 						super.streamingStarted(event);
-					};
+					}
 
+					@Override
 					public void streamingFinished(StreamingEndEvent event) {
 						ui.accessSynchronously(() -> ui.setPollInterval(-1));
 						super.streamingFinished(event);
-					};
+					}
 
+					@Override
 					public void streamingFailed(StreamingErrorEvent event) {
 						ui.accessSynchronously(() -> ui.setPollInterval(-1));
 						super.streamingFailed(event);
-					};
+					}
 				};
-			};
+			}
 		};
 		multiFileUpload.setWidth(null);
 		multiFileUpload.setUploadButtonIcon(ImageIcon.UP_16_ICON.createResource());
@@ -114,11 +118,6 @@ public abstract class MultiUpload extends CssLayout {
 	 */
 	protected void queueStarted() {
 		queueStarted = true;
-	}
-
-	@Override
-	public void attach() {
-		super.attach();
 	}
 
 	@Override

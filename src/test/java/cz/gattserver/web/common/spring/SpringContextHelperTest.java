@@ -24,14 +24,24 @@ public class SpringContextHelperTest {
 		assertNotNull(tc);
 		assertTrue(tc instanceof TestComponentImpl);
 	}
-	
+
 	@Test
 	public void testGetContext() {
 		ApplicationContext context = SpringContextHelper.getContext();
 		assertNotNull(context);
-		
+
 		TestComponent tc = context.getBean(TestComponent.class);
 		assertNotNull(tc);
+	}
+
+	@Test
+	public void testInject() {
+		TestConsumer consumer = new TestConsumer();
+		assertNull(consumer.getComponent());
+
+		SpringContextHelper.inject(consumer);
+		assertNotNull(consumer.getComponent());
+		assertTrue(consumer.getComponent() instanceof TestComponentImpl);
 	}
 
 }
