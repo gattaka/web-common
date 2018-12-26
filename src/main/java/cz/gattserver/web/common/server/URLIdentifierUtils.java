@@ -29,6 +29,46 @@ public class URLIdentifierUtils {
 		}
 	}
 
+	private static char transformChars(char c) {
+		switch (c) {
+		case 'á':
+			return 'a';
+		case 'č':
+			return 'c';
+		case 'ď':
+			return 'd';
+		case 'é':
+			return 'e';
+		case 'ě':
+			return 'e';
+		case 'í':
+			return 'i';
+		case 'ň':
+			return 'n';
+		case 'ó':
+			return 'o';
+		case 'ř':
+			return 'r';
+		case 'š':
+			return 's';
+		case 'ť':
+			return 't';
+		case 'ú':
+			return 'u';
+		case 'ů':
+			return 'u';
+		case 'ý':
+			return 'y';
+		case 'ž':
+			return 'z';
+		case ' ':
+			return '-';
+		}
+		if ((c + "").matches("[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ]"))
+			return c;
+		return 0;
+	}
+
 	/**
 	 * <p>
 	 * Vytvoří URL identifikátor ve tvaru
@@ -53,11 +93,22 @@ public class URLIdentifierUtils {
 	 */
 	public static String createURLIdentifier(Long id, String name) {
 		try {
+			StringBuilder sb = new StringBuilder();
+			name = name.toLowerCase();
+			for (int i = 0; i < name.length(); i++) {
+				char c = transformChars(name.charAt(i));
+				if (c != 0)
+					sb.append(c);
+			}
+			name = sb.toString().replaceAll("--", "-");
+
 			String identifier = URLEncoder.encode(String.valueOf(id) + "-" + name, "UTF-8");
 			// Tomcat má default nastavené ignorovat adresy ve kterých je %2F
 			// https://www.assembla.com/spaces/liftweb/wiki/Tomcat/print
 			// http://forum.spring.io/forum/spring-projects/web/97212-url-encoded-in-pathvariable-value-causes-problems
-			return identifier.replaceAll("%2F", "%252F");
+			// Nově to Spring security už vůbec nepovoluje
+			// https://stackoverflow.com/questions/48580584/stricthttpfirewall-in-spring-security-4-2-vs-spring-mvc-matrixvariable
+			return identifier.replaceAll("%2F", "").replaceAll("%3B", "");
 		} catch (UnsupportedEncodingException e) {
 			// UTF-8 missing - vážně ?
 			LoggerFactory.getLogger(URLIdentifierUtils.class).error("Nezdařilo se vytvoření URL identifikátoru", e);
