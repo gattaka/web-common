@@ -64,7 +64,7 @@ public class URLIdentifierUtils {
 		case ' ':
 			return '-';
 		}
-		if ((c + "").matches("[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ]"))
+		if ((c + "").matches("[0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ]"))
 			return c;
 		return 0;
 	}
