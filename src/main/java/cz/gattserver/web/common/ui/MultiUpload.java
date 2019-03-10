@@ -7,13 +7,16 @@ import java.util.List;
 import com.vaadin.server.StreamVariable.StreamingEndEvent;
 import com.vaadin.server.StreamVariable.StreamingErrorEvent;
 import com.vaadin.server.StreamVariable.StreamingStartEvent;
+import com.vaadin.ui.Component;
 import com.vaadin.ui.CssLayout;
+import com.vaadin.ui.DragAndDropWrapper;
 import com.vaadin.ui.UI;
 import com.wcs.wcslib.vaadin.widget.multifileupload.component.FileDetail;
 import com.wcs.wcslib.vaadin.widget.multifileupload.ui.MultiFileUpload;
 import com.wcs.wcslib.vaadin.widget.multifileupload.ui.UploadStatePanel;
 import com.wcs.wcslib.vaadin.widget.multifileupload.ui.UploadStateWindow;
 
+@SuppressWarnings("deprecation")
 public abstract class MultiUpload extends CssLayout {
 
 	private static final long serialVersionUID = 8634797364790772321L;
@@ -143,6 +146,10 @@ public abstract class MultiUpload extends CssLayout {
 
 	public void setAcceptedMimeTypes(List<String> mimeTypes) {
 		multiFileUpload.setAcceptedMimeTypes(mimeTypes);
+	}
+
+	public DragAndDropWrapper createDropComponent(Component component) {
+		return multiFileUpload.getSmartUpload().createDropComponent(component);
 	}
 
 }
