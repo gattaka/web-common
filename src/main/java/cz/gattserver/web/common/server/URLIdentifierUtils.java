@@ -66,7 +66,7 @@ public class URLIdentifierUtils {
 		}
 		if ((c + "").matches("[0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ]"))
 			return c;
-		return 0;
+		return '-';
 	}
 
 	/**
@@ -100,7 +100,7 @@ public class URLIdentifierUtils {
 				if (c != 0)
 					sb.append(c);
 			}
-			name = sb.toString().replaceAll("--", "-");
+			name = sb.toString().replaceAll("[-]+", "-");
 
 			String identifier = URLEncoder.encode(String.valueOf(id) + "-" + name, "UTF-8");
 			// Tomcat má default nastavené ignorovat adresy ve kterých je %2F
