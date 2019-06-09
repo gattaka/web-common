@@ -63,10 +63,11 @@ public class URLIdentifierUtils {
 			return 'z';
 		case ' ':
 			return '-';
+		default:
+			if ((c + "").matches("[0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ]"))
+				return c;
+			return '-';
 		}
-		if ((c + "").matches("[0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ]"))
-			return c;
-		return '-';
 	}
 
 	/**

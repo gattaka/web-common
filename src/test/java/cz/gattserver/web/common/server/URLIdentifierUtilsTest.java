@@ -23,8 +23,8 @@ public class URLIdentifierUtilsTest {
 
 	@Test
 	public void testCreateURLIdentifier_unicode() {
-		String identifier = URLIdentifierUtils.createURLIdentifier(45L, "test českých znáčků a žluťoučkých žiraf Ň!");
-		assertEquals("45-test-ceskych-znacku-a-zlutouckych-ziraf-n-", identifier);
+		String identifier = URLIdentifierUtils.createURLIdentifier(45L, "ó překontně tést češkých ďábelských měkkých znáčků a žlúťoučkých žíraf Ň!");
+		assertEquals("45-o-prekontne-test-ceskych-dabelskych-mekkych-znacku-a-zlutouckych-ziraf-n-", identifier);
 	}
 
 	@Test
