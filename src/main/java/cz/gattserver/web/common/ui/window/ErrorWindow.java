@@ -2,7 +2,7 @@ package cz.gattserver.web.common.ui.window;
 
 import cz.gattserver.web.common.ui.ImageIcon;
 
-public class ErrorWindow extends MessageWindow {
+public class ErrorWindow extends MessageDialog {
 
 	private static final long serialVersionUID = -4793025663820815400L;
 

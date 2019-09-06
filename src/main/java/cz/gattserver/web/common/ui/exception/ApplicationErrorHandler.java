@@ -1,14 +1,14 @@
 package cz.gattserver.web.common.ui.exception;
 
-import com.vaadin.server.ErrorEvent;
-import com.vaadin.server.ErrorHandler;
-import com.vaadin.ui.UI;
-
 import cz.gattserver.web.common.exception.SystemException;
-import cz.gattserver.web.common.ui.exception.ExceptionWindow;
+import cz.gattserver.web.common.ui.exception.ExceptionDialog;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.vaadin.flow.component.UI;
+import com.vaadin.flow.server.ErrorEvent;
+import com.vaadin.flow.server.ErrorHandler;
 
 public class ApplicationErrorHandler implements ErrorHandler {
 
@@ -25,7 +25,7 @@ public class ApplicationErrorHandler implements ErrorHandler {
 		logger.error(log);
 		UI ui = UI.getCurrent();
 		if (ui != null)
-			ui.addWindow(new ExceptionWindow(throwable));
+			ui.add(new ExceptionDialog(throwable));
 	}
 
 }

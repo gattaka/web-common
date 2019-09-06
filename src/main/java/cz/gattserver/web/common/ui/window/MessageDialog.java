@@ -1,60 +1,54 @@
 package cz.gattserver.web.common.ui.window;
 
-import com.vaadin.server.Resource;
-import com.vaadin.ui.Alignment;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.Embedded;
-import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.Label;
-import com.vaadin.ui.TextArea;
+import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.html.Image;
+import com.vaadin.flow.component.html.Label;
+import com.vaadin.flow.component.orderedlayout.FlexComponent.Alignment;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
+import com.vaadin.flow.component.textfield.TextArea;
+import com.vaadin.flow.server.StreamResource;
 
-public class MessageWindow extends WebWindow {
+public class MessageDialog extends WebDialog {
 
 	private static final long serialVersionUID = 4123506060675738841L;
 
 	protected TextArea detailsArea;
 
 	/**
-	 * @param caption
-	 *            popisek okna
 	 * @param labelCaption
 	 *            obsah zprávy v okně
 	 * @param imageResource
 	 *            resource ikony okna
 	 */
-	public MessageWindow(String caption, String labelCaption, Resource imageResource) {
-		this(caption, labelCaption, null, imageResource);
+	public MessageDialog(String labelCaption, StreamResource imageResource) {
+		this(labelCaption, null, imageResource);
 	}
 
 	/**
-	 * @param caption
-	 *            popisek okna
 	 * @param labelCaption
 	 *            obsah zprávy v okně
 	 * @param imageResource
 	 *            resource ikony okna
 	 */
-	public MessageWindow(String caption, String labelCaption, String details, Resource imageResource) {
-		super(caption);
-
+	public MessageDialog(String labelCaption, String details, StreamResource imageResource) {
 		HorizontalLayout horizontalLayout = new HorizontalLayout();
 		horizontalLayout.setSpacing(true);
 		addComponent(horizontalLayout);
 
-		Embedded embedded = new Embedded(null, imageResource);
-		horizontalLayout.addComponent(embedded);
-		horizontalLayout.setComponentAlignment(embedded, Alignment.MIDDLE_CENTER);
+		Image embedded = new Image(imageResource, "img");
+		horizontalLayout.add(embedded);
+		horizontalLayout.setVerticalComponentAlignment(Alignment.CENTER, embedded);
 
 		Label msgLabel = new Label(labelCaption);
 		msgLabel.setSizeUndefined();
-		horizontalLayout.addComponent(msgLabel);
+		horizontalLayout.add(msgLabel);
 
 		createDetails(details);
 
 		Button proceedButton = new Button("OK", event -> close());
 
 		addComponent(proceedButton);
-		setComponentAlignment(proceedButton, Alignment.BOTTOM_RIGHT);
+		setComponentAlignment(proceedButton, Alignment.END);
 	}
 
 	protected void createDetails(String details) {

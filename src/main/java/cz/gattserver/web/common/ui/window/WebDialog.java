@@ -1,50 +1,49 @@
 package cz.gattserver.web.common.ui.window;
 
-import com.vaadin.ui.Alignment;
-import com.vaadin.ui.Component;
-import com.vaadin.ui.VerticalLayout;
-import com.vaadin.ui.Window;
+import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.dialog.Dialog;
+import com.vaadin.flow.component.html.Span;
+import com.vaadin.flow.component.orderedlayout.FlexComponent.Alignment;
+import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 
 import cz.gattserver.web.common.spring.SpringContextHelper;
 
-public class WebWindow extends Window {
+public class WebDialog extends Dialog {
 
 	private static final long serialVersionUID = -9184044674542039306L;
 
 	protected VerticalLayout layout = new VerticalLayout();
 
-	public WebWindow() {
+	public WebDialog(String caption) {
 		init();
+		layout.add(new Span(caption));
 	}
 
-	public WebWindow(String name) {
-		super(name);
+	public WebDialog() {
 		init();
 	}
 
 	private void init() {
 		SpringContextHelper.inject(this);
 
-		setContent(layout);
-		setModal(true);
+		add(layout);
+		setCloseOnOutsideClick(false);
 
 		layout.setSpacing(true);
-		layout.setMargin(true);
-
-		center();
+		layout.setPadding(false);
 	}
 
 	public void addComponent(Component component) {
-		layout.addComponent(component);
+		layout.add(component);
 	}
 
 	public void addComponent(Component component, Alignment alignment) {
-		layout.addComponent(component);
+		layout.add(component);
 		setComponentAlignment(component, alignment);
 	}
 
 	public void setComponentAlignment(Component component, Alignment alignment) {
-		layout.setComponentAlignment(component, alignment);
+		layout.setHorizontalComponentAlignment(alignment, component);
 	}
 
 }

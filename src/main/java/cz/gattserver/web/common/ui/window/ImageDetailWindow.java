@@ -1,10 +1,11 @@
 package cz.gattserver.web.common.ui.window;
 
-import com.vaadin.server.StreamResource;
-import com.vaadin.ui.Alignment;
-import com.vaadin.ui.Image;
+import com.vaadin.flow.component.html.Image;
+import com.vaadin.flow.component.html.Span;
+import com.vaadin.flow.component.orderedlayout.FlexComponent.Alignment;
+import com.vaadin.flow.server.StreamResource;
 
-public class ImageDetailWindow extends WebWindow {
+public class ImageDetailWindow extends WebDialog {
 
 	private static final long serialVersionUID = 4123506060675738841L;
 
@@ -12,10 +13,10 @@ public class ImageDetailWindow extends WebWindow {
 	private static final int WINDOWHEADER_HEIGHT = 50;
 
 	public ImageDetailWindow(String description, int width, int height, StreamResource resource) {
-		super(description);
-		Image img = new Image(null, resource);
+		addComponent(new Span(description));
+		Image img = new Image(resource, description);
 		addComponent(img);
-		layout.setComponentAlignment(img, Alignment.MIDDLE_CENTER);
+		layout.setHorizontalComponentAlignment(Alignment.CENTER, img);
 		setWidth((width + WINDOWPADDING) + "px");
 		setHeight((height + WINDOWPADDING + WINDOWHEADER_HEIGHT) + "px");
 	}

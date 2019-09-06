@@ -1,7 +1,6 @@
 package cz.gattserver.web.common.ui;
 
-import com.vaadin.server.ClassResource;
-import com.vaadin.server.Resource;
+import com.vaadin.flow.server.StreamResource;
 
 public enum ImageIcon {
 
@@ -110,7 +109,8 @@ public enum ImageIcon {
 		this.image = name;
 	}
 
-	public Resource createResource() {
-		return new ClassResource(ImageIcon.class, "icons/" + image);
+	public StreamResource createResource() {
+		String name = "icons/" + image;
+		return new StreamResource(image, () -> ImageIcon.class.getResourceAsStream(name));
 	}
 }

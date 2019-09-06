@@ -2,7 +2,7 @@ package cz.gattserver.web.common.ui.window;
 
 import cz.gattserver.web.common.ui.ImageIcon;
 
-public class WarnWindow extends MessageWindow {
+public class WarnWindow extends MessageDialog {
 
 	private static final long serialVersionUID = -4793025663820815400L;
 
@@ -11,7 +11,7 @@ public class WarnWindow extends MessageWindow {
 	}
 
 	public WarnWindow(String labelCaption, String details) {
-		super("Varování", labelCaption, details, ImageIcon.WARNING_16_ICON.createResource());
+		super(labelCaption, details, ImageIcon.WARNING_16_ICON.createResource());
 	}
 
 }
