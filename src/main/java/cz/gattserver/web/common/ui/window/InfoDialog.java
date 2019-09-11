@@ -2,11 +2,11 @@ package cz.gattserver.web.common.ui.window;
 
 import cz.gattserver.web.common.ui.ImageIcon;
 
-public class InfoWindow extends MessageDialog {
+public class InfoDialog extends MessageDialog {
 
 	private static final long serialVersionUID = -4793025663820815400L;
 
-	public InfoWindow(String labelCaption) {
+	public InfoDialog(String labelCaption) {
 		super("Info", labelCaption, ImageIcon.INFO_16_ICON.createResource());
 	}
 

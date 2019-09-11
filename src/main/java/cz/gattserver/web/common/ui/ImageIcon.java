@@ -108,7 +108,7 @@ public enum ImageIcon {
 	private ImageIcon(String name) {
 		this.image = name;
 	}
-
+	
 	public StreamResource createResource() {
 		String name = "icons/" + image;
 		return new StreamResource(image, () -> ImageIcon.class.getResourceAsStream(name));
