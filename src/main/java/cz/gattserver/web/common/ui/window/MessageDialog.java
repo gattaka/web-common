@@ -55,7 +55,8 @@ public class MessageDialog extends WebDialog {
 		if (details != null) {
 			detailsArea = new TextArea();
 			detailsArea.setValue(details);
-			detailsArea.setEnabled(false);
+			detailsArea.setEnabled(true);
+			detailsArea.setReadOnly(true);
 			detailsArea.setWidth("100%");
 			detailsArea.setHeight("200px");
 			addComponent(detailsArea);

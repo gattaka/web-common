@@ -28,6 +28,7 @@ public class WebDialog extends Dialog {
 
 		add(layout);
 		setCloseOnOutsideClick(false);
+		setCloseOnEsc(false);
 
 		layout.setSpacing(true);
 		layout.setPadding(false);
