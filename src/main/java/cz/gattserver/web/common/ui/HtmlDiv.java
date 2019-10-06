@@ -6,13 +6,16 @@ public class HtmlDiv extends Div {
 
 	private static final long serialVersionUID = 7526089060607305886L;
 
+	public HtmlDiv() {
+	}
+
 	public HtmlDiv(String value) {
-		super();
 		setValue(value);
 	}
 
 	public HtmlDiv setValue(String value) {
-		getElement().setProperty("innerHTML", value);
+		// https://github.com/vaadin/flow/issues/4644
+		getElement().executeJs("this.innerHTML = $0", value);
 		return this;
 	}
 
