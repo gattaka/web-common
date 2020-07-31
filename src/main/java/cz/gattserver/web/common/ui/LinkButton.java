@@ -12,6 +12,7 @@ public class LinkButton extends Button {
 		super(text, clickListener);
 		addThemeVariants(ButtonVariant.LUMO_TERTIARY_INLINE);
 		getStyle().set("cursor", "pointer");
+		addClassName("button-link");
 	}
 
 }
