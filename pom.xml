@@ -40,7 +40,7 @@
 		<dependency>
 			<groupId>cz.gattserver</groupId>
 			<artifactId>common</artifactId>
-			<version>1.0.8</version>
+			<version>1.0.9-SNAPSHOT</version>
 		</dependency>
 
 		<!-- Zasílání mailu ze serveru -->
@@ -69,7 +69,7 @@
 		<dependency>
 			<groupId>cz.gattserver</groupId>
 			<artifactId>common-test</artifactId>
-			<version>1.0.6</version>
+			<version>1.0.7-SNAPSHOT</version>
 			<type>pom</type>
 			<scope>test</scope>
 		</dependency>
