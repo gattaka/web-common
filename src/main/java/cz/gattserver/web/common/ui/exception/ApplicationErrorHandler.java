@@ -6,7 +6,6 @@ import cz.gattserver.web.common.ui.exception.ExceptionDialog;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.vaadin.flow.component.UI;
 import com.vaadin.flow.server.ErrorEvent;
 import com.vaadin.flow.server.ErrorHandler;
 
@@ -23,9 +22,7 @@ public class ApplicationErrorHandler implements ErrorHandler {
 	public void error(Throwable throwable) {
 		String log = new SystemException("V aplikaci došlo k neočekávané chybě", throwable).toString();
 		logger.error(log);
-		UI ui = UI.getCurrent();
-		if (ui != null)
-			ui.add(new ExceptionDialog(throwable));
+		new ExceptionDialog(throwable).open();
 	}
 
 }
