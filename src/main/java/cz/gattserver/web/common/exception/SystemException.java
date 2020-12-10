@@ -14,7 +14,7 @@ public class SystemException extends ApplicationException {
 
 	@Override
 	public String toString() {
-		return "\nSystemException {\n" + "  id:                           " + id + "\n"
+		return "SystemException {\n" + "  id:                           " + id + "\n"
 				+ "  timestamp:                    " + timeStamp + "\n" + "  localizedErrorMessage:        "
 				+ localizedErrorMessage + "\n" + "  originalExceptionStackTrace:  " + "{\n" + "    "
 				+ originalExceptionStackTrace + "  }\n" + "}";
