@@ -23,7 +23,7 @@ public class WebDialog extends Dialog {
 		init();
 	}
 
-	private void init() {
+	protected void init() {
 		SpringContextHelper.inject(this);
 
 		add(layout);
