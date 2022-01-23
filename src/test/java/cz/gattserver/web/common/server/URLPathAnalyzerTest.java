@@ -1,7 +1,9 @@
 package cz.gattserver.web.common.server;
 
-import static org.junit.Assert.*;
+//import static org.junit.jupiter.api.Assertions.*;
+//import org.junit.jupiter.api.Test;
 
+import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class URLPathAnalyzerTest {

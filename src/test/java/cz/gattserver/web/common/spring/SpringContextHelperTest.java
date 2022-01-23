@@ -1,15 +1,21 @@
 package cz.gattserver.web.common.spring;
 
-import static org.junit.Assert.*;
+//import static org.junit.jupiter.api.Assertions.*;
 
+//import org.junit.jupiter.api.Test;
+//import org.junit.jupiter.api.extension.ExtendWith;
+//import org.springframework.test.context.junit.jupiter.SpringExtension;
+
+import static org.junit.Assert.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
+//@ExtendWith(SpringExtension.class)
 @RunWith(SpringRunner.class)
-@ContextConfiguration(locations = { "classpath:spring/app-context.xml" })
+@ContextConfiguration(classes = AppConfiguration.class)
 public class SpringContextHelperTest {
 
 	@Test

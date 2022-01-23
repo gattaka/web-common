@@ -1,10 +1,11 @@
 package cz.gattserver.web.common.server;
 
-import static org.junit.Assert.*;
+//import static org.junit.jupiter.api.Assertions.*;
+//import org.junit.jupiter.api.Test;
 
+import static org.junit.Assert.*;
 import org.junit.Test;
 
-import cz.gattserver.web.common.server.URLIdentifierUtils;
 import cz.gattserver.web.common.server.URLIdentifierUtils.URLIdentifier;
 
 public class URLIdentifierUtilsTest {
@@ -23,7 +24,8 @@ public class URLIdentifierUtilsTest {
 
 	@Test
 	public void testCreateURLIdentifier_unicode() {
-		String identifier = URLIdentifierUtils.createURLIdentifier(45L, "ó překontně tést češkých ďábelských měkkých znáčků a žlúťoučkých žíraf Ň!");
+		String identifier = URLIdentifierUtils.createURLIdentifier(45L,
+				"ó překontně tést češkých ďábelských měkkých znáčků a žlúťoučkých žíraf Ň!");
 		assertEquals("45-o-prekontne-test-ceskych-dabelskych-mekkych-znacku-a-zlutouckych-ziraf-n-", identifier);
 	}
 

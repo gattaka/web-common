@@ -7,7 +7,7 @@
 	<parent>
 		<groupId>cz.gattserver</groupId>
 		<artifactId>gattserver-parent</artifactId>
-		<version>1.0.12</version>
+		<version>1.0.13</version>
 	</parent>
 
 	<prerequisites>
@@ -19,6 +19,8 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
+		<gattserver.common.version>1.0.11-SNAPSHOT</gattserver.common.version>
+		<gattserver.common.test.version>1.0.8-SNAPSHOT</gattserver.common.test.version>				
 	</properties>
 
 	<scm>
@@ -40,7 +42,7 @@
 		<dependency>
 			<groupId>cz.gattserver</groupId>
 			<artifactId>common</artifactId>
-			<version>1.0.9-SNAPSHOT</version>
+			<version>${gattserver.common.version}</version>
 		</dependency>
 
 		<!-- Zasílání mailu ze serveru -->
@@ -69,7 +71,7 @@
 		<dependency>
 			<groupId>cz.gattserver</groupId>
 			<artifactId>common-test</artifactId>
-			<version>1.0.7-SNAPSHOT</version>
+			<version>${gattserver.common.test.version}</version>
 			<type>pom</type>
 			<scope>test</scope>
 		</dependency>
@@ -98,7 +100,6 @@
 					</execution>
 				</executions>
 			</plugin>
-
 		</plugins>
 	</build>
 
