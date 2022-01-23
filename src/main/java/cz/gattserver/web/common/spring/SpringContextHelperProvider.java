@@ -9,6 +9,5 @@ public class SpringContextHelperProvider implements ApplicationContextAware {
 
 	public void setApplicationContext(ApplicationContext ctx) {
 		SpringContextHelper.setApplicationContext(ctx);
-		System.out.println("SpringContextHelperProvider setting context !!!!!");
 	}
 }
